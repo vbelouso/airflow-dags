@@ -1,0 +1,20 @@
+env:
+  - name: "AIRFLOW__CORE__LOAD_EXAMPLES"
+    value: "True"
+rbac:
+  # Openshift SCC
+  createSCCRoleBinding: true
+executor: "KubernetesExecutor"
+dags:
+  gitSync:
+    repo: https://github.com/vbelouso/airflow-dags.git
+    enabled: true
+    branch: main
+    rev: HEAD
+    depth: 1
+    maxFailures: 0
+    subPath: "dags"
+    # interval between git sync attempts in seconds
+    wait: 60
+    containerName: git-sync
+    uid: 65533
