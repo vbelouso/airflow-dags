@@ -75,7 +75,7 @@ with DAG(
     # [START basic_task]
     t1 = BashOperator(
         task_id="print_date",
-        bash_command="date",
+        bash_command="timedatectl",
     )
 
     t2 = BashOperator(
